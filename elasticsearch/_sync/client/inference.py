@@ -55,7 +55,9 @@ class InferenceClient(NamespacedClient):
 
         :param inference_id: The inference Id
         :param input: Inference input. Either a string or an array of strings.
-        :param task_settings: Optional task settings
+        :param task_settings: Task settings for the individual inference request. These
+            settings are specific to the <task_type> you specified and override the task
+            settings specified when initializing the service.
         :param timeout: Specifies the amount of time to wait for the inference request
             to complete.
         """
@@ -127,8 +129,9 @@ class InferenceClient(NamespacedClient):
 
         :param inference_id: The inference identifier.
         :param task_type: The task type
-        :param dry_run: When true, the endpoint is not deleted and a list of ingest processors
-            which reference this endpoint is returned.
+        :param dry_run: When true, checks the semantic_text fields and inference processors
+            that reference the endpoint and returns them in a list, but does not delete
+            the endpoint.
         :param force: When true, the inference endpoint is forcefully deleted even if
             it is still being used by ingest processors or semantic text fields.
         """
@@ -867,7 +870,7 @@ class InferenceClient(NamespacedClient):
         :param service: The type of service supported for the specified task type. In
             this case, `anthropic`.
         :param service_settings: Settings used to install the inference model. These
-            settings are specific to the `watsonxai` service.
+            settings are specific to the `anthropic` service.
         :param chunking_settings: The chunking configuration object.
         :param task_settings: Settings to configure the inference task. These settings
             are specific to the task type you specified.
@@ -959,7 +962,7 @@ class InferenceClient(NamespacedClient):
         :param service: The type of service supported for the specified task type. In
             this case, `azureaistudio`.
         :param service_settings: Settings used to install the inference model. These
-            settings are specific to the `openai` service.
+            settings are specific to the `azureaistudio` service.
         :param chunking_settings: The chunking configuration object.
         :param task_settings: Settings to configure the inference task. These settings
             are specific to the task type you specified.
@@ -2638,7 +2641,9 @@ class InferenceClient(NamespacedClient):
 
         :param inference_id: The inference Id
         :param input: Inference input. Either a string or an array of strings.
-        :param task_settings: Optional task settings
+        :param task_settings: Task settings for the individual inference request. These
+            settings are specific to the <task_type> you specified and override the task
+            settings specified when initializing the service.
         :param timeout: Specifies the amount of time to wait for the inference request
             to complete.
         """
@@ -2710,7 +2715,9 @@ class InferenceClient(NamespacedClient):
             to the relevant service-specific documentation for more info. > info > The
             `input_type` parameter specified on the root level of the request body will
             take precedence over the `input_type` parameter specified in `task_settings`.
-        :param task_settings: Optional task settings
+        :param task_settings: Task settings for the individual inference request. These
+            settings are specific to the <task_type> you specified and override the task
+            settings specified when initializing the service.
         :param timeout: Specifies the amount of time to wait for the inference request
             to complete.
         """

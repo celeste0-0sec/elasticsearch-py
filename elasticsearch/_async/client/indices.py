@@ -1467,12 +1467,17 @@ class IndicesClient(NamespacedClient):
         .. raw:: html
 
           <p>Downsample an index.
-          Aggregate a time series (TSDS) index and store pre-computed statistical summaries (<code>min</code>, <code>max</code>, <code>sum</code>, <code>value_count</code> and <code>avg</code>) for each metric field grouped by a configured time interval.
-          For example, a TSDS index that contains metrics sampled every 10 seconds can be downsampled to an hourly index.
+          Downsamples a time series (TSDS) index and reduces its size by keeping the last value or by pre-aggregating metrics:</p>
+          <ul>
+          <li>When running in <code>aggregate</code> mode, it pre-calculates and stores statistical summaries (<code>min</code>, <code>max</code>, <code>sum</code>, <code>value_count</code> and <code>avg</code>)
+          for each metric field grouped by a configured time interval and their dimensions.</li>
+          <li>When running in <code>last_value</code> mode, it keeps the last value for each metric in the configured interval and their dimensions.</li>
+          </ul>
+          <p>For example, a TSDS index that contains metrics sampled every 10 seconds can be downsampled to an hourly index.
           All documents within an hour interval are summarized and stored as a single document in the downsample index.</p>
           <p>NOTE: Only indices in a time series data stream are supported.
           Neither field nor document level security can be defined on the source index.
-          The source index must be read only (<code>index.blocks.write: true</code>).</p>
+          The source index must be read-only (<code>index.blocks.write: true</code>).</p>
 
 
         `<https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-downsample>`_
@@ -3701,7 +3706,7 @@ class IndicesClient(NamespacedClient):
         *,
         name: t.Union[str, t.Sequence[str]],
         data_retention: t.Optional[t.Union[str, t.Literal[-1], t.Literal[0]]] = None,
-        downsampling: t.Optional[t.Mapping[str, t.Any]] = None,
+        downsampling: t.Optional[t.Sequence[t.Mapping[str, t.Any]]] = None,
         enabled: t.Optional[bool] = None,
         error_trace: t.Optional[bool] = None,
         expand_wildcards: t.Optional[
