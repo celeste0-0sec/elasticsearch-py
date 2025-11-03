@@ -2680,7 +2680,7 @@ class Percentiles(Agg[_R]):
         self,
         *,
         keyed: Union[bool, "DefaultType"] = DEFAULT,
-        percents: Union[Sequence[float], "DefaultType"] = DEFAULT,
+        percents: Union[float, Sequence[float], "DefaultType"] = DEFAULT,
         hdr: Union["types.HdrMethod", Dict[str, Any], "DefaultType"] = DEFAULT,
         tdigest: Union["types.TDigest", Dict[str, Any], "DefaultType"] = DEFAULT,
         format: Union[str, "DefaultType"] = DEFAULT,
