@@ -3427,7 +3427,7 @@ class IndicesClient(NamespacedClient):
         *,
         name: t.Union[str, t.Sequence[str]],
         data_retention: t.Optional[t.Union[str, t.Literal[-1], t.Literal[0]]] = None,
-        downsampling: t.Optional[t.Mapping[str, t.Any]] = None,
+        downsampling: t.Optional[t.Sequence[t.Mapping[str, t.Any]]] = None,
         enabled: t.Optional[bool] = None,
         error_trace: t.Optional[bool] = None,
         expand_wildcards: t.Optional[
